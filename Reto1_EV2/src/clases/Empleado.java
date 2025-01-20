@@ -11,11 +11,18 @@ public class Empleado {
 	}
 	
 	
-	public Empleado(String nombre, int anteguedad, double sueldo) {
+	public Empleado(String nombre, int anteguedad) {
 		super();
 		this.nombre = nombre;
 		this.anteguedad = anteguedad;
-		this.sueldo = sueldo;
+		if(anteguedad < 5) {
+			this.sueldo =1000;
+		} else if(anteguedad > 5 && anteguedad < 10 ) {
+			this.sueldo =1200;
+		} else {
+			this.sueldo =1500;
+		}
+		
 	}
 
 
@@ -48,6 +55,7 @@ public class Empleado {
 		this.sueldo = sueldo;
 	}
 
+	
 
 	
 	
