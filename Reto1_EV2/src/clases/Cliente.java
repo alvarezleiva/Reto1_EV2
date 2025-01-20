@@ -1,6 +1,7 @@
 package clases;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -44,24 +45,26 @@ public class Cliente {
 	}
 
 
-	public void comprarProducto (int idTienda, Producto producto) {
-		
-		do {
-			
-			
-		}while()
-		
-		
-		
+	public void comprarProducto (Tienda tienda,int idProducto) {	
+		List<Producto> productos=new ArrayList<Producto>();
+		for (Producto producto : tienda.getProductos()) {
+			if (producto.getId()==idProducto) {
+				productos.add(producto);
+				break;
+			}
+		}
+		this.listaCompras.put(tienda, productos);
+		tienda.venderProducto(idProducto);
 		
 	}
-	public double gastoTotal (List<Producto> listaCompras) {
-		
-		
-		
-		
-		
-		
+	public double gastoTotal () {
+		double total=0;
+		for (Tienda tienda : listaCompras.keySet()) {
+			for (Producto producto : tienda.getProductos()) {
+				total+=producto.getPrecio();
+			}
+		}
+		return total;
 	}
 	
 }
