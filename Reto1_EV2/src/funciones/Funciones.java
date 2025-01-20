@@ -139,62 +139,67 @@ public class Funciones {
 
 	public static void rellenoArrayRandom(int[] array, int min, int max, Random random) {
 		for (int i = 0; i < array.length; i++) {
-			array[i]=random.nextInt(min,max);
+			array[i] = random.nextInt(min, max);
 		}
 	}
+
 	public static void rellenoListaRandom(List<Integer> lista, int cantidad, int min, int max, Random random) {
 		for (int i = 0; i < cantidad; i++) {
 			lista.add(random.nextInt(min, max));
 		}
 	}
+
 	public static boolean esPrimo(int num) {
-		boolean primo=true;
-		for (int i =2; i < num; i++) {
-			if (num%i==0) {
+		boolean primo = true;
+		for (int i = 2; i < num; i++) {
+			if (num % i == 0) {
 				return false;
 			}
 		}
 		return primo;
 	}
-	public static List<Integer> rellenoListaRandoms(int cantidad ,int min,int max) {
+
+	public static List<Integer> rellenoListaRandoms(int cantidad, int min, int max) {
 		Random r = new Random();
-		List<Integer> list= new ArrayList<Integer>();
+		List<Integer> list = new ArrayList<Integer>();
 		for (int i = 0; i < cantidad; i++) {
-			list.add(r.nextInt(min,max));
+			list.add(r.nextInt(min, max));
 		}
 		return list;
 	}
+
 	public static void mostrarMap(Map<String, String> map) {
 		for (Map.Entry<String, String> entry : map.entrySet()) {
 			String key = entry.getKey();
 			String val = entry.getValue();
-			System.out.println(key+" - "+val);
-			
+			System.out.println(key + " - " + val);
+
 		}
 	}
+
 	public static double redondeoDosDecimales(double num) {
-		return Math.round(num*100)/100;
+		return Math.round(num * 100) / 100;
 	}
-	public static List<Integer> generarAleatoriosSinRepetir(int min,int max, int cantidad) {
+
+	public static List<Integer> generarAleatoriosSinRepetir(int min, int max, int cantidad) {
 		Random r = new Random();
-		List<Integer> list= new ArrayList<Integer>();
+		List<Integer> list = new ArrayList<Integer>();
 		for (int i = 0; i < cantidad; i++) {
-			boolean esta=false;
-			int nr=r.nextInt(min,max);
+			boolean esta = false;
+			int nr = r.nextInt(min, max);
 			do {
-				esta=false;
-				nr=r.nextInt(min,max);
+				esta = false;
+				nr = r.nextInt(min, max);
 				for (Integer integer : list) {
-					if (nr==integer) {
-						esta=true;
+					if (nr == integer) {
+						esta = true;
 						break;
 					}
 				}
 			} while (esta);
 			list.add(nr);
 		}
-		
-		
+
 		return list;
 	}
 }
