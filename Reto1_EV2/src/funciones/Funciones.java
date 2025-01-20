@@ -1,35 +1,26 @@
 package funciones;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.Iterator;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Funciones {
-
-	public static void main(String[] args) {
-
-		Scanner sc = new Scanner(System.in);
-
-		int e = dimeEntero("Introduce un número entero", sc);
-		double d = dimeDouble("Introduce un número decimal", sc);
-	}
-
-	public static boolean esInt(String s) {
-
+	public static boolean esInt(String num) {
 		try {
-			int num = Integer.parseInt(s);
+			Integer.parseInt(num);
 			return true;
 		} catch (Exception e) {
 			return false;
 		}
 	}
 
-	public static boolean esDouble(String s) {
+	public static boolean esDouble(String num) {
 		try {
-			double num = Integer.parseInt(s);
+			Double.parseDouble(num);
 			return true;
 		} catch (Exception e) {
 			return false;
@@ -37,31 +28,31 @@ public class Funciones {
 	}
 
 	public static int dimeEntero(String texto, Scanner sc) {
+		int num = 0;
 		do {
 			try {
 				System.out.println(texto);
 				String s = sc.nextLine();
-				int n = Integer.parseInt(s);
-				return n;
-			} catch (Exception ex) {
-				System.out.println("Introduce un nº correcto");
+				num = Integer.parseInt(s);
+				return num;
+			} catch (Exception e) {
+				System.out.println("Numero no valido");
 			}
 		} while (true);
-
 	}
 
 	public static double dimeDouble(String texto, Scanner sc) {
+		double num = 0;
 		do {
 			try {
 				System.out.println(texto);
 				String s = sc.nextLine();
-				double n = Double.parseDouble(s);
-				return n;
-			} catch (Exception ex) {
-				System.out.println("Introduce un nº decimal correcto");
+				num = Double.parseDouble(s);
+				return num;
+			} catch (Exception e) {
+				System.out.println("Numero no valido");
 			}
 		} while (true);
-
 	}
 
 	public static LocalDate dimeFecha(String texto, Scanner sc) {
@@ -79,78 +70,131 @@ public class Funciones {
 
 	}
 
-	public static String menorAlf(String[] array, String peque) {
-
-		String menor = array[0];
-
-		for (int i = 1; i < array.length - 1; i++) {
-
-			if (array[i].compareTo(peque) > 0 && menor.compareTo(array[i]) > 0) {
-				menor = array[i];
-			}
-		}
-		return menor;
-	}
-
-	public static boolean esta(int n, int[] array) {
+	public static void displayArray(int[] array) {
 		for (int i = 0; i < array.length; i++) {
-			if (array[i] == n)
+			System.out.print(i == 0 ? array[i] : ", " + array[i]);
+		}
+		System.out.println();
+	}
+
+	public static void displayArray(String[] array) {
+		for (int i = 0; i < array.length; i++) {
+			System.out.print(i == 0 ? array[i] : ", " + array[i]);
+		}
+		System.out.println();
+	}
+
+	public static void displayArrayPares(int[] array) {
+		for (int i = 0; i < array.length; i++) {
+			System.out.print(array[i] % 2 == 0 ? array[i] + " " : "");
+		}
+		System.out.println();
+	}
+
+	public static String[] arrayString(Scanner sc, int arrayPos) {
+		String[] array = new String[arrayPos];
+		for (int i = 0; i < array.length; i++) {
+			array[i] = sc.nextLine();
+
+		}
+		return array;
+	}
+
+	public static String[] arraySplit(String texto, Scanner sc) {
+		System.out.println(texto);
+		String s = sc.nextLine();
+		String array[] = s.split(" ");
+		return array;
+	}
+
+	public static boolean buscarIguales(int[] array, int num) {
+		boolean igual = false;
+		for (int i = 0; i < array.length; i++) {
+			if (num == array[i]) {
 				return true;
-		}
-		return false;
-	}
 
-	public static boolean esPrimo(int n) {
-		for (int i = 2; i < n; i++) {
-			if (n % i == 0)
-				return false;
-		}
-		return true;
-	}
-
-	public static void MuestraListaInt(List<Integer> lista) {
-
-		boolean primero = true;
-		for (int i = 0; i < lista.size(); i++) {
-			if (primero) {
-				System.out.print(lista.get(i));
-				primero = false;
-			} else {
-				System.out.print("," + lista.get(i));
 			}
 		}
+		return igual;
+
 	}
-	
-	public static Map<String,String> rellena(Scanner sc)
-	{
-		Map<String,String> map = new HashMap<String,String>();
-		String clave="",nombre="";
-		//pido 5 parejas de valores
-		for(int i=1;i<4;i++)
-		{
-			do
-			{
-				System.out.println("Introduce una clave");
-				 clave=sc.nextLine();
-			}while(clave.length()!=3);
-			do
-			{
-				System.out.println("Introduce el nombre"+i);
-				nombre=sc.nextLine();
-			}while(nombre.equals(""));
-			map.put(clave, nombre);
+
+	public static void muestraListaInt(List<Integer> listaNum) {
+		boolean primero = true;
+		for (Integer elementos : listaNum) {
+			System.out.print(primero ? elementos : ", " + elementos);
+			primero = false;
 		}
-		return map;
+		System.out.println();
 	}
-	public static void muestra(Map<String,String> map)
-	{
-		String clave=""; 
-		//iteramos sus claves
-		Iterator<String> claves = map.keySet().iterator(); 
-		while(claves.hasNext())
-		{ 
-			clave = claves.next(); 
-			System.out.println(clave + " - " + map.get(clave)); 
-		} 
+
+	public static void muestraListaString(List<String> listaS) {
+		boolean primero = true;
+		for (String elementos : listaS) {
+			System.out.print(primero ? elementos : ", " + elementos);
+			primero = false;
+		}
+		System.out.println();
+	}
+
+	public static void rellenoArrayRandom(int[] array, int min, int max, Random random) {
+		for (int i = 0; i < array.length; i++) {
+			array[i]=random.nextInt(min,max);
+		}
+	}
+	public static void rellenoListaRandom(List<Integer> lista, int cantidad, int min, int max, Random random) {
+		for (int i = 0; i < cantidad; i++) {
+			lista.add(random.nextInt(min, max));
+		}
+	}
+	public static boolean esPrimo(int num) {
+		boolean primo=true;
+		for (int i =2; i < num; i++) {
+			if (num%i==0) {
+				return false;
+			}
+		}
+		return primo;
+	}
+	public static List<Integer> rellenoListaRandoms(int cantidad ,int min,int max) {
+		Random r = new Random();
+		List<Integer> list= new ArrayList<Integer>();
+		for (int i = 0; i < cantidad; i++) {
+			list.add(r.nextInt(min,max));
+		}
+		return list;
+	}
+	public static void mostrarMap(Map<String, String> map) {
+		for (Map.Entry<String, String> entry : map.entrySet()) {
+			String key = entry.getKey();
+			String val = entry.getValue();
+			System.out.println(key+" - "+val);
+			
+		}
+	}
+	public static double redondeoDosDecimales(double num) {
+		return Math.round(num*100)/100;
+	}
+	public static List<Integer> generarAleatoriosSinRepetir(int min,int max, int cantidad) {
+		Random r = new Random();
+		List<Integer> list= new ArrayList<Integer>();
+		for (int i = 0; i < cantidad; i++) {
+			boolean esta=false;
+			int nr=r.nextInt(min,max);
+			do {
+				esta=false;
+				nr=r.nextInt(min,max);
+				for (Integer integer : list) {
+					if (nr==integer) {
+						esta=true;
+						break;
+					}
+				}
+			} while (esta);
+			list.add(nr);
+		}
+		
+		
+		return list;
 	}
 }
