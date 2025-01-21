@@ -45,17 +45,16 @@ public class Cliente {
 	}
 
 
-	public void comprarProducto (Tienda tienda,int idProducto) {	
-		List<Producto> productos=new ArrayList<Producto>();
-		for (Producto producto : tienda.getProductos()) {
-			if (producto.getId()==idProducto) {
-				productos.add(producto);
-				break;
-			}
+	public void comprarProducto (Tienda tienda,Producto producto) {	
+		if (listaCompras.containsKey(tienda)) {
+			this.listaCompras.get(tienda).add(producto);
+			tienda.venderProducto(producto.getId());
+		}else {
+			List<Producto> productos = new ArrayList<Producto>();
+			productos.add(producto);
+			this.listaCompras.put(tienda, productos);
+			tienda.venderProducto(producto.getId());
 		}
-		this.listaCompras.put(tienda, productos);
-		tienda.venderProducto(idProducto);
-		
 	}
 	public double gastoTotal () {
 		double total=0;
