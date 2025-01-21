@@ -7,7 +7,7 @@ import funciones.Funciones;
 public class Reto1_2ev {
 
 	public static void main(String[] args) {
-
+		
 
 		
 		Scanner sc = new Scanner(System.in);
