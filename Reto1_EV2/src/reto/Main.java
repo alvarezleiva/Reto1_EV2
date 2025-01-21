@@ -20,7 +20,7 @@ public class Main {
 			
 			Empleado e = new Empleado();
 			e.setNombre("Empleado " + i);
-			e.setAnteguedad(r.nextInt(10, 101));
+			e.setAnteguedad(r.nextInt(1,21));
 			empleados.add(e);
 		}
 		return empleados;
