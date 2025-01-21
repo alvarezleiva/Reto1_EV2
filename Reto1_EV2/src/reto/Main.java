@@ -15,9 +15,8 @@ public class Main {
 		// Generando 20 empleados
 		List<Empleado> empleados = new ArrayList<>();
 
-		for (int i = 1; i < 21; i++) {
-
-			
+		for (int i = 0; i < 21; i++) {
+		
 			Empleado e = new Empleado();
 			e.setNombre("Empleado " + i);
 			e.setAnteguedad(r.nextInt(1,21));
