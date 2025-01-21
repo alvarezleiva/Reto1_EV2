@@ -17,6 +17,7 @@ public class Main {
 
 		for (int i = 1; i < 21; i++) {
 
+			
 			Empleado e = new Empleado();
 			e.setNombre("Empleado " + i);
 			e.setAnteguedad(r.nextInt(10, 101));
